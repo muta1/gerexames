@@ -35,7 +35,7 @@ module.exports.models = {
    *                                                                          *
    ***************************************************************************/
 
-  // schema: true,
+   schema: true,
 
 
   /***************************************************************************
@@ -54,7 +54,6 @@ module.exports.models = {
    ***************************************************************************/
 
   migrate: 'alter',
-  connection: 'gerexames-sails'
 
   /***************************************************************************
    *                                                                          *
@@ -68,10 +67,11 @@ module.exports.models = {
    *                                                                          *
    ***************************************************************************/
 
-  // attributes: {
-  //   createdAt: { type: 'number', autoCreatedAt: true, },
-  //   updatedAt: { type: 'number', autoUpdatedAt: true, },
-  //   id: { type: 'number', autoIncrement: true, },
+   attributes: {
+     createdAt: { type: 'number', autoCreatedAt: true, },
+     updatedAt: { type: 'number', autoUpdatedAt: true, },
+     id: { type: 'number', autoIncrement: true,  },
+     
   //   //--------------------------------------------------------------------------
   //   //  /\   Using MongoDB?
   //   //  ||   Replace `id` above with this instead:
@@ -83,7 +83,7 @@ module.exports.models = {
   //   // Plus, don't forget to configure MongoDB as your default datastore:
   //   // https://sailsjs.com/docs/tutorials/using-mongo-db
   //   //--------------------------------------------------------------------------
-  // },
+   },
 
 
   /******************************************************************************
@@ -100,9 +100,9 @@ module.exports.models = {
    *                                                                             *
    ******************************************************************************/
 
-  // dataEncryptionKeys: {
-  //   default: 'lm2thiw6vslh2oW1mSpQjfQZgwtfa7MV7eINstEFPRc='
-  // },
+  dataEncryptionKeys: {
+    default: 'lm2thiw6vslh2oW1mSpQjfQZgwtfa7MV7eINstEFPRc='
+  },
 
 
   /***************************************************************************
@@ -118,7 +118,7 @@ module.exports.models = {
    *                                                                          *
    ***************************************************************************/
 
-  //cascadeOnDestroy: true
+  cascadeOnDestroy: true
 
 
 };

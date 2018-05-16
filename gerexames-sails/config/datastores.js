@@ -49,12 +49,12 @@ module.exports.datastores = {
      *                                                                          *
      ***************************************************************************/
     adapter: 'sails-mysql',
-    host: 'localhost',
-    port: 3306,
-    user: 'gerexames-sails',
-    password: 'gerexames-sails'
+    // host: 'localhost',
+    // port: 3306,
+    // user: 'gerexames-sails',
+    // password: 'gerexames-sails'
 
-    //url: 'mysql://gerexames-sails:gerexames-sails@localhost:3306/gerexames-sails',
+    url: 'mysql://gerexames-sails:gerexames-sails@localhost:3306/gerexames-sails'
 
   },
 
