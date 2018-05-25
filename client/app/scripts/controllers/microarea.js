@@ -9,17 +9,17 @@
  */
 
 angular.module('clientApp')
-  .controller('MicroareaCtrl', ['$scope', '$http', 'API', function ($scope, $http, API) {
-    
-    
+  .controller('MicroareaCtrl', ['$scope', '$http', 'API', function ($scope, $http, API, microAreaServices) {
+
+
     $http({
       method: 'GET',
-      url: API+'/microarea'
+      url: API + '/microarea'
     }).then(function (response) {
-      
-      console.log('mainctrl response sucesso',response.data);
 
-    }).catch(function (err){
-        console.log('error ---> MicroareaCtrl 1',err);
+      console.log('mainctrl response sucesso', response.data);
+
+    }).catch(function (err) {
+      console.log('error ---> MicroareaCtrl 1', err);
     });
   }]);

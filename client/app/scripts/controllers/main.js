@@ -8,6 +8,6 @@
  * Controller of the clientApp
  */
 angular.module('clientApp')
-  .controller('MainCtrl',[ '$scope',function ($scope) {
-      
+  .controller('MainCtrl',[ '$scope',function ($scope,API) {
+      $scope.api = API;
   }]);
