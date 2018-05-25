@@ -8,7 +8,8 @@
  *
  * Main module of the application.
  */
-angular
+
+ angular
   .module('clientApp', [
     'ngAnimate',
     'ngAria',
@@ -19,6 +20,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
+  .constant('API','http://localhost:1337')
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
@@ -30,6 +32,11 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
+      })
+      .when('/microarea',{
+        templateUrl: 'views/microarea.html',
+        controller: 'MicroareaCtrl',
+        controllerAs: 'micro'
       })
       .otherwise({
         redirectTo: '/'
