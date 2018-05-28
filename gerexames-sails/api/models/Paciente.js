@@ -6,19 +6,23 @@
  */
 
 module.exports = {
-
+  tableName: 'paciente',
   attributes: {
 
+    id: {
+      type: 'number',
+      autoIncrement: true
+    },
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+
     NOME_PACIENTE: {
       type: 'string',
       required: true
     },
     DATA_NASC: {
       type: 'string',
-      columnType: 'date',
       required: true
     },
     TELEFONE_FIXO: {
@@ -43,18 +47,20 @@ module.exports = {
       type: 'boolean'
     },
     EXAME_MASTOLOGIA_DESC: {
-      type: 'string'
+      type: 'string',
+      columnType: 'text'
     },
     EXAME_CITOPATOLOGICO_ALTERADO: {
       type: 'boolean'
     },
     EXAME_CITOPATOLOGICO_DESC: {
-      type: 'string'
+      type: 'string',
+      columnType: 'text'
     },
     EM_PRIORIDADE: {
       type: 'boolean'
     },
-    
+
 
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -65,8 +71,17 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    owner:{
-      model:'microarea'
+    owner: {
+      model: 'Microarea',
+      columnName: 'CODIGO_MICROAREA'
+    },
+    createdAt: {
+      type: 'number',
+      autoCreatedAt: true,
+    },
+    updatedAt: {
+      type: 'number',
+      autoUpdatedAt: true,
     }
   },
 

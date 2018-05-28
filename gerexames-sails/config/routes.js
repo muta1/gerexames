@@ -26,7 +26,8 @@ module.exports.routes = {
 
   '/': {
     view: 'pages/homepage'
-  }
+  },
+  'POST /paciente/deleteFromMicroarea/' : 'PacienteController.deletarTodosPacientesDessaMicroarea'
 
   /***************************************************************************
   *                                                                          *

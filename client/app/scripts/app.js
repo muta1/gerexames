@@ -18,7 +18,9 @@
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngMaterial',
+    'ngTable'
   ])
   .constant('API','http://localhost:1337')
   .config(function ($routeProvider) {
@@ -37,6 +39,11 @@
         templateUrl: 'views/microarea.html',
         controller: 'MicroareaCtrl',
         controllerAs: 'micro'
+      })
+      .when('/paciente',{
+        templateUrl: 'views/paciente.html',
+        controller: 'PacienteCtrl',
+        controllerAs: 'paci'
       })
       .otherwise({
         redirectTo: '/'

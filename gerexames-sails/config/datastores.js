@@ -54,7 +54,7 @@ module.exports.datastores = {
     // user: 'gerexames-sails',
     // password: 'gerexames-sails'
 
-    url: 'mysql://gerexames-sails:gerexames-sails@localhost:3306/gerexames-sails'
+    url: 'mysql://gerexames-sails:gerexames-sails@127.0.0.1:3306/gerexames-sails'
 
   },
 

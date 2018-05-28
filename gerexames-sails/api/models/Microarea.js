@@ -6,9 +6,13 @@
  */
 
 module.exports = {
-
+  tableName: 'microarea',
   attributes: {
 
+    id: {
+      type: 'number',
+      autoIncrement: true
+    },
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
@@ -27,6 +31,9 @@ module.exports = {
       type: 'number',
       required: true
     },
+    PACIENTES_ATENDIDOS_MICROAREA: {
+      type: 'number'
+    },
 
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -38,8 +45,17 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     pacientes: {
-      collection: 'paciente'
-    }
+      collection: 'Paciente',
+      via: 'owner'
+    },
+    createdAt: {
+      type: 'number',
+      autoCreatedAt: true,
+    },
+    updatedAt: {
+      type: 'number',
+      autoUpdatedAt: true,
+    },
   },
 
 };

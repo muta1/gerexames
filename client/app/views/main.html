@@ -1,25 +1,46 @@
-<div class="jumbotron">
-  <h1>{{api}}</h1>
-  <!-- <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p> -->
+<div class="container" g-controller="MainCtrl as main">
+  <div class="text-center">
+    <div style="background:#eee;">
+      <h4>
+        <p class="md-display-1" style="color: black;"> Atualize para ver Pacientes em Prioridade!</p>
+      </h4>
+    </div>
+  </div>
+<div class="jumbotron" class="text-center">
+  <button type="button" class="btn btn-default" ng-click="getAllPacientesEmPrioridade()">Atualizar</button>
 </div>
 
-<div class="row marketing">
+  <!-- <div ng-repeat="mArea in listMicroAreas">
+      {{mArea}}
+    </div> -->
+  <table ng-table="tableParams" class="table table-bordered">
+    <thead>
+      <tr>
+        <th>NOME</th>
+        <th>ENDEREÇO</th>
+        <th>TELEFONE</th>
+        <th>MICROAREA</th>
+      </tr>
+      <thead>
+        <tbody>
+          <tr ng-repeat="paciente in listPacientes">
+            <td class="text-center" data-title="'NOME_PACIENTE'">
+              {{paciente.NOME_PACIENTE}}
+            </td>
+            <td class="text-center" data-title="'ENDERECO'">
+              {{paciente.RUA}}, {{paciente.NUMERO}} - {{paciente.BAIRRO}}
+            </td>
+            <td class="text-center" data-title="'TELEFONE'">
+              {{paciente.TELEFONE_FIXO}} / {{paciente.TELEFONE_CELULAR}}
+            </td>
+            <td class="text-center" data-title="'META_ATENDIMENTO_MICROAREA'">
+              {{paciente.owner.NOME_MICROAREA}}
+            </td>
+          </tr>
+        </tbody>
 
-    <h1>Olá tudo bem </h1>
-
-  <!-- <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p> -->
-
-  <!-- <h4>Karma</h4> -->
-  <!-- <p>Spectacular Test Runner for JavaScript.</p> -->
+  </table>
 </div>
+<!-- <div class="jumbotron">
+  <input type="button" value="TESTEEEE" ng-click="delTodosPacientesMicroarea(25)">
+</div> -->

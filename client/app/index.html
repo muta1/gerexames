@@ -11,6 +11,17 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <!-- endbower -->
+
+
+  <!-- Angular Material -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+
+  <!-- ngTable -->
+  <!-- <link rel="stylesheet" href="http://cdn.jsdelivr.net/angular.ngtable/0.3.2/ng-table.css"> -->
+  <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+
+
+
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
   <link rel="stylesheet" href="styles/main.css">
@@ -25,6 +36,7 @@
   <!-- Add your site or application content here -->
 
   <div ng-include="'views/template/header.html'"></div>
+  <div ng-include="'views/template/sidenav.html'"></div>
   <div class="container">
     <div ng-view=""></div>
   </div>
@@ -62,10 +74,26 @@
 
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
   <script src="scripts/app.js"></script>
+  <!-- Controllers -->
   <script src="scripts/controllers/main.js"></script>
   <script src="scripts/controllers/about.js"></script>
   <script src="scripts/controllers/microarea.js"></script>
+  <script src="scripts/controllers/paciente.js"></script>
+  <!-- Services -->
+  <script src="scripts/services/main-service.js"></script>
+  <script src="scripts/services/microarea-service.js"></script>
+  <script src="scripts/services/paciente-service.js"></script>
   <!-- endbuild -->
+  <!-- ANGULAR MATERIAL -->
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+  <!-- Angular Material Library -->
+
+  <!-- ngTable -->
+  <!-- <script src="http://cdn.jsdelivr.net/angular.ngtable/0.3.2/ng-table.js"></script> -->
+  <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
+
+
 </body>
 
 </html>
