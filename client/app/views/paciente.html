@@ -1,0 +1,52 @@
+<div class="text-center">
+  <div class="row">
+    <h3>
+      <label class="text-info">Buscar Pacientes</label>
+    </h3>
+  </div>
+  <!-- <div class="row">
+    <button type="button" ng-click="getAllMicroareas()">Atualizar Microáreas</button>
+  </div> -->
+
+  <br/>
+  <div class="row" ng-repeat="mArea in listMicroAreas" style="border-width: 1px;border-style: dotted;border-color: black">
+
+    <div class="col-md-6 text-center">
+      <h4>
+        <b>Microárea:</b> {{mArea.NOME_MICROAREA}}</h4>
+    </div>
+    <div class="col-md-6 text-center align-middle">
+      <button type="button" ng-click="buscarPacientes(mArea.id)" class="btn btn-primary">Buscar Pacientes</button>
+    </div>
+  </div>
+  <div class="text-center" ng-show="!foramEncontradasMicroares">
+    <span class="text text-center text-danger">Nenhuma Microárea cadastrada.</span>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+<div ng-repeat="paciente in listPacientesMicroarea">
+  {{paciente.id}}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br/>
+<br/>

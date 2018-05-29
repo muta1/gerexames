@@ -7,30 +7,45 @@
  * # PacienteCtrl
  * Controller of the clientApp
  */
-  angular.module('clientApp')
-    .controller('PacienteCtrl', ['$scope', '$http', 'API', 'pacienteServices', 'NgTableParams','$mdSidenav','$location', function ($scope, $http, API, pacienteServices, NgTableParams, $mdSidenav, $location) {
-      // $scope.openSidebar = function () {
+angular.module('clientApp')
+  .controller('PacienteCtrl', ['$scope', '$http', 'API', 'pacienteServices', 'NgTableParams', '$mdSidenav', '$location', 'microAreaServices', function ($scope, $http, API, pacienteServices, NgTableParams, $mdSidenav, $location, microAreaServices) {
+    // -------------------------------------------
+    //$scope.listPacientesMicroarea = {};
+    //$scope.listMicroAreas = {};
 
-      //   $mdSidenav('left').open();
-      // }
-      // $scope.closeSidebar = function () {
-      //   $mdSidenav('left').close();
-      // }
+    $scope.getAllMicroareas = function () {
+      var _microareas = microAreaServices.getMicroareas();
 
-      // $scope.goToHome = function () {
-      //   $location.url('/');
-      // }
+      _microareas.then(function (response) {
+        if (response.data.length == 0) {
+          $scope.foramEncontradasMicroares = false;
+        } else {
+          $scope.foramEncontradasMicroares = true;
+          $scope.listMicroAreas = response.data;
+        }
+      }, function (error) {
+        console.log('ERROR' + error);
+      });
+    }
+    $scope.getAllMicroareas();
 
-      // $scope.getAllPacientesEmPrioridade = function () {
-      //   var _pacientes = mainServices.getAllPacientesEmPrioridade();
-
-      //   _pacientes.then(function (response) {
-      //     $scope.listPacientes = response.data;
-      //   }, function (error) {
-      //     console.log('ERROR' + error);
-      //   });
-      // }
-      //$scope.getAllPacientesEmPrioridade();
+    //$scope.getAllMicroareas();
 
 
-    }]);
+    // -------------------------------------------
+
+
+    $scope.buscarPacientes = function (mAreaObj) {
+      var _pacientes = pacienteServices.getPacientesFromMicroarea(mAreaObj);
+
+      _pacientes.then(function (response) {
+        console.log('oi meu chapa ',response )
+        // $scope.listPacientesMicroarea = response.data;
+      }, function (error) {
+        console.log('ERROR' + error);
+      });
+    }
+
+    // -------------------------------------------
+
+  }]);
