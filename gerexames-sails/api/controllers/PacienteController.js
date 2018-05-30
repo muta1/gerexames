@@ -48,7 +48,7 @@ module.exports = {
       //console.log('var é ' + id);
 
       sails.sendNativeQuery(pacientesFromMicroarea, [id]).then(function (response) {
-        console.log('resposta nativa ' + response);
+        //console.log('resposta nativa ' + response);
         res.status(200).json(response)
       }, function (err) {
         console.log('erro :', err);

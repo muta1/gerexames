@@ -43,7 +43,7 @@ angular.module('clientApp')
         console.log('atualizou', response);
         $scope.reset();
       }, function (error) {
-        console.log('não salvou', error);
+        console.log('não salvou (update microarea)', error);
       })
     }
     $scope.saveMicroArea = function (mAreaAdd) {
@@ -53,7 +53,7 @@ angular.module('clientApp')
         console.log('salvou', response);
         $scope.reset();
       }, function (error) {
-        console.log('não salvou', error);
+        console.log('não salvou (save microarea)', error);
       })
     }
 

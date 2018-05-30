@@ -34,18 +34,33 @@ angular.module('clientApp')
 
     // -------------------------------------------
 
-
+    //$scope.listPacientesTemAlgo = false;
     $scope.buscarPacientes = function (mAreaObj) {
-      var _pacientes = pacienteServices.getPacientesFromMicroarea(mAreaObj);
+      var _pacientes = pacienteServices.getPacientesFromMicroarea(mAreaObj.id);
 
       _pacientes.then(function (response) {
-        console.log('oi meu chapa ',response )
-        // $scope.listPacientesMicroarea = response.data;
+        //console.log('mAreaObj :', mAreaObj);
+        $scope.microAreaBuscada = mAreaObj;
+        //console.log('oi meu chapa ',response.data.rows )
+        $scope.listPacientesMicroarea = response.data.rows;
+        if ($scope.listPacientesMicroarea.length > 0) {
+          $scope.listPacientesFoiEncontrado = true;
+          $scope.listPacientesNenhumEncontrado = false;
+        } else {
+          $scope.listPacientesFoiEncontrado = false;
+          $scope.listPacientesNenhumEncontrado = true;
+        }
+
       }, function (error) {
+        //$scope.listPacientesTemAlgo = false;
         console.log('ERROR' + error);
       });
     }
 
     // -------------------------------------------
-
+    // ADICIONAR PACIENTE
+    $scope.addPaciente = false;
+    $scope.adicionarPaciente = function (){
+      $scope.addPaciente = true;
+    }
   }]);

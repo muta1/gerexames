@@ -6,40 +6,42 @@
       </h4>
     </div>
   </div>
-<div class="jumbotron" class="text-center">
-  <button type="button" class="btn btn-default" ng-click="getAllPacientesEmPrioridade()">Atualizar</button>
-</div>
+  <div class="jumbotron" class="text-center">
+    <button type="button" class="btn btn-default" ng-click="getAllPacientesEmPrioridade()">Atualizar</button>
+  </div>
 
   <!-- <div ng-repeat="mArea in listMicroAreas">
       {{mArea}}
     </div> -->
-  <table ng-table="tableParams" class="table table-bordered">
-    <thead>
-      <tr>
-        <th>NOME</th>
-        <th>ENDEREÇO</th>
-        <th>TELEFONE</th>
-        <th>MICROAREA</th>
-      </tr>
+  <div class="table-responsive">
+    <table ng-table="tableParams" class="table table-bordered">
       <thead>
-        <tbody>
-          <tr ng-repeat="paciente in listPacientes">
-            <td class="text-center" data-title="'NOME_PACIENTE'">
-              {{paciente.NOME_PACIENTE}}
-            </td>
-            <td class="text-center" data-title="'ENDERECO'">
-              {{paciente.RUA}}, {{paciente.NUMERO}} - {{paciente.BAIRRO}}
-            </td>
-            <td class="text-center" data-title="'TELEFONE'">
-              {{paciente.TELEFONE_FIXO}} / {{paciente.TELEFONE_CELULAR}}
-            </td>
-            <td class="text-center" data-title="'META_ATENDIMENTO_MICROAREA'">
-              {{paciente.owner.NOME_MICROAREA}}
-            </td>
-          </tr>
-        </tbody>
+        <tr>
+          <th>NOME</th>
+          <th>ENDEREÇO</th>
+          <th>TELEFONE</th>
+          <th>MICROAREA</th>
+        </tr>
+        <thead>
+          <tbody>
+            <tr class="table-responsive" ng-repeat="paciente in listPacientes">
+              <td class="text-center bg-danger" data-title="'NOME_PACIENTE'">
+                {{paciente.NOME_PACIENTE}}
+              </td>
+              <td class="text-center bg-danger" data-title="'ENDERECO'">
+                {{paciente.RUA}}, {{paciente.NUMERO}} - {{paciente.BAIRRO}}
+              </td>
+              <td class="text-center bg-danger" data-title="'TELEFONE'">
+                {{paciente.TELEFONE_FIXO}} / {{paciente.TELEFONE_CELULAR}}
+              </td>
+              <td class="text-center bg-danger" data-title="'META_ATENDIMENTO_MICROAREA'">
+                {{paciente.owner.NOME_MICROAREA}}
+              </td>
+            </tr>
+          </tbody>
 
-  </table>
+    </table>
+  </div>
 </div>
 <!-- <div class="jumbotron">
   <input type="button" value="TESTEEEE" ng-click="delTodosPacientesMicroarea(25)">
