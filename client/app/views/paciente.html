@@ -95,14 +95,10 @@
             </span>
           </div>
           <div class="col-md-2 text text-center">
-            <span class="text text-success text-uppercase font-weight-bold">
-              EDITAR
-            </span>
+            <button type="button" class="btn btn-success" ng-click="editarPaciente(paciente)">Editar</button>
           </div>
           <div class="col-md-2 text text-center">
-            <span class="text text-success text-uppercase font-weight-bold">
-              DELETAR
-            </span>
+            <button type="button" class="btn btn-danger" ng-click="deletarPaciente(paciente)">Editar</button>
           </div>
         </div>
       </div>
@@ -120,80 +116,203 @@
 <br/>
 <br/>
 
-<div ng-show="addPaciente">
-  MICROAREA {{microAreaBuscada.NOME_MICROAREA}}
-  <div class="container">
-      <div class="row">
-        <h1> Cadastre-se</h1>
-        <hr>
-      </div>
+<div ng-show="formPaciente">
 
-      <div class="row">
+  <div class="container">
+    <div class="row text-center">
+      <h1> Cadastro de Paciente </h1>
+      <p>
+        <h1> Microárea:
+          <b>{{microAreaBuscada.NOME_MICROAREA}}</b>
+        </h1>
+      </p>
+      <hr>
+    </div>
+
+    <div class="row">
 
       <div class="col-md-3">
-        Cadastre seus dados no formulário ao lado para finalizar sua compra conosco!
+        Cadastre os dados no formulário ao lado para adicionar um novo paciente!
       </div>
 
       <div class="col-md-9">
-        <form>
+        <form name="pacienteForm" ng-submit="submitForm(pacienteForm.$valid)" novalidate>
           <div class="form-group">
-            <label for="nome_completo">* Digite seu nome completo:</label>
-            <input type="text" class="form-control" name="nome_completo" required>
+            <label for="nome_completo">* Nome completo:</label>
+            <input ng-model="dataPaciente.NOME_PACIENTE" type="text" class="form-control" name="NOME_PACIENTE" required>
+            <p ng-show="pacienteForm.NOME_PACIENTE.$invalid" class="help-block">
+              <span class="text-danger">Nome do paciente é obrigatório.</span>
+            </p>
           </div>
 
           <div class="form-group">
-            <label for="email">* Informe seu e-mail:</label>
-            <input type="email" class="form-control" name="mail" required>
+            <label for="data_nasc">Data de Nascimento:</label>
+            <input ng-model="dataPaciente.DATA_NASC" type="date" class="form-control" name="DATA_NASC" required>
+            <p ng-show="pacienteForm.DATA_NASC.$invalid" class="help-block">
+              <span class="text-danger">Data de nascimento é obrigatória.</span>
+            </p>
           </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="telefone_fixo">* Telefone Principal:</label>
+                <input ng-model="dataPaciente.TELEFONE_FIXO" type="text" class="form-control" name="TELEFONE_FIXO" required>
+                <p ng-show="pacienteForm.TELEFONE_FIXO.$invalid" class="help-block">
+                  <span class="text-danger">Telefone Principal Obrigatório.</span>
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="telefone_celular">* Telefone Secundário:</label>
+                <input ng-model="dataPaciente.TELEFONE_CELULAR" type="text" class="form-control" name="TELEFONE_CELULAR" required>
+                <p ng-show="pacienteForm.TELEFONE_FIXO.$invalid" class="help-block">
+                  <span class="text-danger">Telefone Secundário Obrigatório.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="rua">* Rua:</label>
+                <input ng-model="dataPaciente.RUA" type="text" class="form-control" name="RUA" required>
+                <p ng-show="pacienteForm.RUA.$invalid" class="help-block">
+                  <span class="text-danger">Por favor, informe a Rua.</span>
+                </p>
+
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="numero">* Número:</label>
+                <input ng-model="dataPaciente.NUMERO" type="text" class="form-control" name="NUMERO" required>
+                <p ng-show="pacienteForm.NUMERO.$invalid" class="help-block">
+                  <span class="text-danger">Por favor, informe o Número.</span>
+                </p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="bairro">* Bairro:</label>
+                <input ng-model="dataPaciente.BAIRRO" type="text" class="form-control" name="BAIRRO" required>
+                <p ng-show="pacienteForm.BAIRRO.$invalid" class="help-block">
+                  <span class="text-danger">Por favor, informe o Bairro.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="cep">* CEP:</label>
+                <input ng-model="dataPaciente.CEP" type="text" class="form-control" name="CEP" required>
+                <p ng-show="pacienteForm.CEP.$invalid" class="help-block">
+                  <span class="text-danger">Por favor, informe o CEP.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
 
           <!-- Agora vou sub-dividir esta coluna em outras três -->
           <div class="container-fluid">
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="idade">Informe sua idade:</label>
-                <input type="number" class="form-control" name="idade" min="18" max="110" required>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label for="mastologia">Exame Mastologia alterado:</label>
+                    <br/>
+                    <input type="radio" name="EXAME_MASTOLOGIA_ALTERADO" ng-click="alteradoMasto()" ng-model="dataPaciente.EXAME_MASTOLOGIA_ALTERADO"
+                      value="1"> Sim
+                    <br/>
+                    <input type="radio" name="EXAME_MASTOLOGIA_ALTERADO" ng-click="naoAlteradoMasto()" ng-model="dataPaciente.EXAME_MASTOLOGIA_ALTERADO"
+                      value="0"> Não
+                  </div>
+                  <!-- ng-show="mastologiaAlterado" ng-show="varAlteradoMasto"-->
+                  <div class="col-sm-6" ng-if="dataPaciente.EXAME_MASTOLOGIA_ALTERADO == '1'">
+                    <div class="form-group">
+                      <label for="cep">* Descrição:</label>
+                      <input ng-model="dataPaciente.EXAME_MASTOLOGIA_DESC" type="text" class="form-control" name="EXAME_MASTOLOGIA_DESC" required>
+                      <p ng-show="pacienteForm.EXAME_MASTOLOGIA_DESC.$invalid" class="help-block">
+                        <span class="text-danger">Por favor, informe a Descrição do resultado.</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="genero">Informe seu género sexual:</label><br/>
-                <input type="radio" name="genero" value="masculino"> Masculino<br/>
-                <input type="radio" name="genero" value="feminino"> Feminino
-              </div>
-            </div>
 
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="data_pgto">Informe a melhor data para pagamento:</label>
-                <input type="date" class="form-control" name="data_pgto"  required>
-              </div>
-              <div class="form-group">
-                <label for="conheceu">Como conheceu nosso site?</label><br/>
-                <input type="checkbox" name="google" value="masculino"> Google<br/>
-                <input type="checkbox" name="amigos" value="feminino"> Amigos <br/>
-                <input type="checkbox" name="revistas_jornais" value="feminino"> Revistas e Jornais <br/>
-              </div>
-            </div>
+              <div class="col-md-6">
+                <div class="row">
+                  <div class="form-group col-sm-6">
+                    <label for="citopatologico">Exame Citopatologico alterado:</label>
+                    <br/>
+                    <input type="radio" ng-click="alteradoCito()" ng-model="dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO" name="EXAME_CITOPATOLOGICO_ALTERADO"
+                      value="1"> Sim
+                    <br/>
+                    <input type="radio" ng-click="naoAlteradoCito()" ng-model="dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO" name="EXAME_CITOPATOLOGICO_ALTERADO"
+                      value="0"> Não
+                  </div>
+                  <!-- ng-show="citopatologicoAlterado"  ng-show="varAlteradoCito"-->
+                  <div class="col-sm-6" ng-if="dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO == '1'">
+                    <div class="form-group">
+                      <label for="cep">* Descrição:</label>
+                      <input ng-model="dataPaciente.EXAME_CITOPATOLOGICO_DESC" type="text" class="form-control" name="EXAME_CITOPATOLOGICO_DESC"
+                        required>
+                      <p ng-show="pacienteForm.EXAME_CITOPATOLOGICO_DESC.$invalid" class="help-block">
+                        <span class="text-danger">Por favor, informe a Descrição do resultado.</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
 
-            <div class="col-md-4">
-              <div class="form-group">
-                <label for="cor_favorita">qual a sua cor favorita?</label><br/>
-                <input type="color" class="form-control" name="cor_favorita">
               </div>
+
             </div>
           </div>
           <!-- fim -->
+          <div class="row">
+            <div class="form-group col-sm-6" align="center" ng-click="clearPaciente()">
+              <!-- ng-click="adicionarPacienteFormulario(dataPaciente)" -->
+              <button type="button" class="btn btn-lg btn-primary">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Limpar Campos
+              </button>
+            </div>
 
-          <div class="form-group" align="center">
-            <button type="submit" class="btn btn-lg btn-success">
-              <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Enviar dados
-            </button>
+            <div class="form-group col-sm-6" align="center" ng-show="addPaciente">
+              <!-- ng-click="adicionarPacienteFormulario(dataPaciente)" -->
+              <button type="submit" class="btn btn-lg btn-success" ng-disabled="paciente-form.$invalid">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Adicionar Paciente
+              </button>
+            </div>
+
+            <div class="form-group col-sm-6" align="center" ng-show="editPaciente">
+              <!-- ng-click="atualizarPacienteFormulario(dataPaciente)" -->
+              <button type="submit" class="btn btn-lg btn-success" ng-disabled="paciente-form.$invalid">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Atualizar Paciente
+              </button>
+            </div>
           </div>
-
 
         </form>
       </div>
     </div>
 
-</div>
-
-
-{{listPacientesMicroarea}}
+  </div>
+  <br/>
+  <br/>
+  <br/> {{dataPaciente}}
+  <br/>
+  <br/>
+  <br/> {{listPacientesMicroarea}}
+  <br/>
+  <br/>
