@@ -28,8 +28,9 @@ module.exports.routes = {
     view: 'pages/homepage'
   },
   'POST /paciente/deleteFromMicroarea/' : 'PacienteController.deletarTodosPacientesDessaMicroarea',
-  'POST /paciente/pacientesFromMicroarea/' : 'PacienteController.pacientesFromMicroarea'
-
+  'POST /paciente/pacientesFromMicroarea/' : 'PacienteController.pacientesFromMicroarea',
+  'POST /microarea/decrement/': 'MicroareaController.decrementPacienteAtendido',
+  'POST /microarea/increment/': 'MicroareaController.incrementPacienteAtendido'
 
   /***************************************************************************
   *                                                                          *

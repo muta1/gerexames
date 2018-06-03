@@ -1,8 +1,8 @@
 <div class="text-center">
   <div class="row">
-    <h3>
-      <label class="text-info font-weight-bold">Buscar Pacientes</label>
-    </h3>
+    <h2>
+      <label class="text font-weight-bold">Buscar Pacientes</label>
+    </h2>
   </div>
   <!-- <div class="row">
     <button type="button" ng-click="getAllMicroareas()">Atualizar Microáreas</button>
@@ -17,12 +17,17 @@
           <b>Microárea:</b> {{mArea.NOME_MICROAREA}}</h4>
       </div>
       <div class="col-md-6" style="display: flex;align-items: center;justify-content: center;">
-        <button type="button" ng-click="buscarPacientes(mArea)" class="btn btn-primary">Buscar Pacientes</button>
+        <button type="button" ng-click="buscarPacientes(mArea)" class="btn btn-primary">
+          Buscar Pacientes&nbsp;&nbsp;
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </button>
       </div>
     </div>
   </div>
   <div class="text-center" ng-show="!foramEncontradasMicroares">
-    <span class="text text-center text-danger">Nenhuma Microárea cadastrada.</span>
+    <h2>
+      <span class="text text-center text-danger">Nenhuma Microárea cadastrada.</span>
+    </h2>
   </div>
 </div>
 
@@ -40,7 +45,7 @@
     </h4>
   </div>
   <div class="row text-center">
-    <button class="btn btn-primary" ng-click="adicionarPaciente()">Adicionar novo paciente em: {{microAreaBuscada.NOME_MICROAREA}}</button>
+    <button class="btn btn-lg btn-primary" ng-click="adicionarPaciente()">Adicionar novo paciente em: {{microAreaBuscada.NOME_MICROAREA}}</button>
   </div>
 </div>
 
@@ -53,7 +58,7 @@
     </h3>
     <br />
     <div class="table-responsive layout-align-center">
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-2">
           <b>Codigo</b>
         </div>
@@ -67,38 +72,40 @@
           <b>Prioridade</b>
         </div>
         <div class="col-md-2">
-          <!-- <b>Editar</b> -->
+
         </div>
         <div class="col-md-2">
-          <!-- <b>Deletar</b> -->
+
         </div>
-      </div>
+      </div> -->
       <div class="table table-bordered" ng-repeat="paciente in listPacientesMicroarea">
         <div class="row">
           <div class="col-md-2 text text-center">
-            {{paciente.id}}
+            <b>Codigo: </b> {{paciente.id}}
           </div>
           <div class="col-md-2 text text-center">
-            {{paciente.NOME_PACIENTE}}
+            <b>Nome: </b>{{paciente.NOME_PACIENTE}}
           </div>
           <div class="col-md-2 text text-center">
-            Rua {{paciente.RUA}}, {{paciente.NUMERO}} - Bairro {{paciente.BAIRRO}}
+            <b>Endereço: </b> Rua {{paciente.RUA}}, {{paciente.NUMERO}} - Bairro {{paciente.BAIRRO}}
           </div>
           <div class="col-md-2 text text-center" ng-show="paciente.EM_PRIORIDADE == 1">
             <span class="text text-danger text-uppercase font-weight-bold">
-              EM PRIORIDADE
+              <b>Prioridade: </b> EM PRIORIDADE
             </span>
           </div>
           <div class="col-md-2 text text-center" ng-show="paciente.EM_PRIORIDADE == 0">
             <span class="text text-success text-uppercase font-weight-bold">
-              FORA DE PRIORIDADE
+              <b>Prioridade: </b>FORA DE PRIORIDADE
             </span>
           </div>
           <div class="col-md-2 text text-center">
-            <button type="button" class="btn btn-success" ng-click="editarPaciente(paciente)">Editar</button>
+            <button type="button" class="btn btn-success" ng-click="editarPaciente(paciente)">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
           </div>
           <div class="col-md-2 text text-center">
-            <button type="button" class="btn btn-danger" ng-click="deletarPaciente(paciente)">Editar</button>
+            <button type="button" class="btn btn-danger" ng-click="deletarPaciente(paciente)">
+              <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Deletar</button>
           </div>
         </div>
       </div>
@@ -107,7 +114,7 @@
     <br/>
 
     <div class="row text-center">
-      <button class="btn btn-primary" ng-click="adicionarPaciente()">Adicionar novo paciente em: {{microAreaBuscada.NOME_MICROAREA}}</button>
+      <button class="btn btn-lg btn-primary" ng-click="adicionarPaciente()">Adicionar novo paciente em: {{microAreaBuscada.NOME_MICROAREA}}</button>
     </div>
 
   </div>
@@ -217,13 +224,6 @@
             </div>
           </div>
 
-
-
-
-
-
-
-
           <!-- Agora vou sub-dividir esta coluna em outras três -->
           <div class="container-fluid">
             <div class="row">
@@ -232,17 +232,16 @@
                   <div class="form-group col-sm-6">
                     <label for="mastologia">Exame Mastologia alterado:</label>
                     <br/>
-                    <input type="radio" name="EXAME_MASTOLOGIA_ALTERADO" ng-click="alteradoMasto()" ng-model="dataPaciente.EXAME_MASTOLOGIA_ALTERADO"
-                      value="1"> Sim
+                    <input type="radio" name="EXAME_MASTOLOGIA_ALTERADO" ng-model="dataPaciente.EXAME_MASTOLOGIA_ALTERADO" value="1"> Sim
                     <br/>
-                    <input type="radio" name="EXAME_MASTOLOGIA_ALTERADO" ng-click="naoAlteradoMasto()" ng-model="dataPaciente.EXAME_MASTOLOGIA_ALTERADO"
-                      value="0"> Não
+                    <input type="radio" name="EXAME_MASTOLOGIA_ALTERADO" ng-model="dataPaciente.EXAME_MASTOLOGIA_ALTERADO" value="0"> Não
                   </div>
                   <!-- ng-show="mastologiaAlterado" ng-show="varAlteradoMasto"-->
                   <div class="col-sm-6" ng-if="dataPaciente.EXAME_MASTOLOGIA_ALTERADO == '1'">
                     <div class="form-group">
                       <label for="cep">* Descrição:</label>
-                      <input ng-model="dataPaciente.EXAME_MASTOLOGIA_DESC" type="text" class="form-control" name="EXAME_MASTOLOGIA_DESC" required>
+                      <textarea ng-model="dataPaciente.EXAME_MASTOLOGIA_DESC" type="text" class="form-control" rows="5" name="EXAME_MASTOLOGIA_DESC"
+                        required></textarea>
                       <p ng-show="pacienteForm.EXAME_MASTOLOGIA_DESC.$invalid" class="help-block">
                         <span class="text-danger">Por favor, informe a Descrição do resultado.</span>
                       </p>
@@ -256,18 +255,16 @@
                   <div class="form-group col-sm-6">
                     <label for="citopatologico">Exame Citopatologico alterado:</label>
                     <br/>
-                    <input type="radio" ng-click="alteradoCito()" ng-model="dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO" name="EXAME_CITOPATOLOGICO_ALTERADO"
-                      value="1"> Sim
+                    <input type="radio" ng-model="dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO" name="EXAME_CITOPATOLOGICO_ALTERADO" value="1"> Sim
                     <br/>
-                    <input type="radio" ng-click="naoAlteradoCito()" ng-model="dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO" name="EXAME_CITOPATOLOGICO_ALTERADO"
-                      value="0"> Não
+                    <input type="radio" ng-model="dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO" name="EXAME_CITOPATOLOGICO_ALTERADO" value="0"> Não
                   </div>
                   <!-- ng-show="citopatologicoAlterado"  ng-show="varAlteradoCito"-->
                   <div class="col-sm-6" ng-if="dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO == '1'">
                     <div class="form-group">
                       <label for="cep">* Descrição:</label>
-                      <input ng-model="dataPaciente.EXAME_CITOPATOLOGICO_DESC" type="text" class="form-control" name="EXAME_CITOPATOLOGICO_DESC"
-                        required>
+                      <textarea ng-model="dataPaciente.EXAME_CITOPATOLOGICO_DESC" type="text" class="form-control" rows="5" name="EXAME_CITOPATOLOGICO_DESC"
+                        required> </textarea>
                       <p ng-show="pacienteForm.EXAME_CITOPATOLOGICO_DESC.$invalid" class="help-block">
                         <span class="text-danger">Por favor, informe a Descrição do resultado.</span>
                       </p>
@@ -284,7 +281,7 @@
             <div class="form-group col-sm-6" align="center" ng-click="clearPaciente()">
               <!-- ng-click="adicionarPacienteFormulario(dataPaciente)" -->
               <button type="button" class="btn btn-lg btn-primary">
-                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Limpar Campos
+                <span class="glyphicon glyphicon-erase" aria-hidden="true"></span> Limpar Campos
               </button>
             </div>
 
@@ -308,7 +305,13 @@
     </div>
 
   </div>
+
+
+
+
+
   <br/>
+
   <br/>
   <br/> {{dataPaciente}}
   <br/>

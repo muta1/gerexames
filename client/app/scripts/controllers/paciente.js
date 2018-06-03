@@ -24,7 +24,7 @@ angular.module('clientApp')
           $scope.listMicroAreas = response.data;
         }
       }, function (error) {
-        console.log('ERROR' + error);
+        console.log('ERROR' , error);
       });
     }
     $scope.getAllMicroareas();
@@ -72,9 +72,9 @@ angular.module('clientApp')
     $scope.addPaciente = false;
     $scope.adicionarPaciente = function () {
       $scope.formPaciente = true;
-      $scope.clearPaciente();
       $scope.addPaciente = true;
       $scope.editPaciente = false;
+      $scope.dataPaciente = {};
     }
 
     // -------------------------------------------
@@ -101,91 +101,98 @@ angular.module('clientApp')
       $scope.dataPaciente.EXAME_MASTOLOGIA_DESC = paciente.EXAME_MASTOLOGIA_DESC;
       $scope.dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO = paciente.EXAME_CITOPATOLOGICO_ALTERADO.toString();
       $scope.dataPaciente.EXAME_CITOPATOLOGICO_DESC = paciente.EXAME_CITOPATOLOGICO_DESC;
-
-      if ($scope.dataPaciente.EXAME_MASTOLOGIA_ALTERADO == '1' || $scope.dataPaciente.EXAME_CITOPATOLOGICO_ALTERADO == '1') {
-        $scope.dataPaciente.EM_PRIORIDADE = 1;
-      } else {
-        $scope.dataPaciente.EM_PRIORIDADE = 0;
-      }
-
-
-
-      //$scope.dataPaciente.NOME_PACIENTE = paciente.NOME_PACIENTE;
-
-      //$scope.dataPaciente.DATA_NASC = //new Date(paciente.DATA_NASC).toLocaleDateString();
+      $scope.dataPaciente.CODIGO_MICROAREA = $scope.microAreaBuscada.id;
     }
 
     // -------------------------------------------
     // Remover Paciente
+    $scope.deletarPaciente = function (paciente) {
+      if (confirm("Deseja realmente remover " + paciente.NOME_PACIENTE + " ?")) {
+        var _pacienteDelete = pacienteServices.delPaciente(paciente);
+        _pacienteDelete.then(function (response) {
+          //console.log('deletou com sucesso  ', response);
+          $scope.formPaciente = false;
+          $scope.listPacientesFoiEncontrado = false;
+          $scope.listPacientesNenhumEncontrado = false;
 
+          var _decrementePaciente = microAreaServices.decrementAtendidos($scope.microAreaBuscada.id);
+          _decrementePaciente.then(function (res) {
+            console.log('decrementou')
+          }, function (err) {
+            console.log('falhou decrementou')
+          })
 
-
-
-
-    // --------------------------------------------
-    // ADD PACIENTE
-    $scope.adicionarPacienteFormulario = function (paciente) {
-      console.log(paciente);
-      pacienteServices.putPaciente(paciente);
-
+        }, function (error) {
+          console.log('não deletou', error);
+        })
+      }
     }
-
-    // --------------------------------------------
-    // ATUALIZAR PACIENTE
-    $scope.atualizarPacienteFormulario = function (paciente) {
-      console.log(paciente);
-      //if()
-
-      // var pacienteData = paciente; //console.log('paciente :', paciente);
-      // var _atualizarPaciente = pacienteServices.putPaciente(pacienteData);
-
-      // _atualizarPaciente.then(function (res) {
-      //   console.log('atualizou - ', res.data);
-      // }, function (err) {
-      //   console.log('deu erro - ', err);
-      // })
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-    // --------------------------------------------
-    // CONTROLE DE EXAMES ALTERADO OU NÃO
-    // CITOPATOLOGICO
-    $scope.varAlteradoCito = false;
-    $scope.alteradoCito = function () {
-      $scope.varAlteradoCito = true;
-    }
-    $scope.naoAlteradoCito = function () {
-      $scope.varAlteradoCito = false;
-      $scope.dataPaciente.EXAME_CITOPATOLOGICO_DESC = "";
-    }
-
-    // MASTOLOGIA
-    $scope.varAlteradoMasto = false;
-    $scope.alteradoMasto = function () {
-      $scope.varAlteradoMasto = true;
-    }
-    $scope.naoAlteradoMasto = function () {
-      $scope.varAlteradoMasto = false;
-      $scope.dataPaciente.EXAME_MASTOLOGIA_DESC = "";
-    }
-
 
 
     $scope.submitForm = function (valid) {
       if (valid) {
-        console.log('form-paciente válido', valid)
+        var pacienteData = $scope.dataPaciente;
+        var objDataHoje = new Date().getFullYear();
+        var objData = new Date(pacienteData.DATA_NASC).getFullYear();
+        var idadePrioritária = (objDataHoje - objData);
+
+        if (pacienteData.EXAME_CITOPATOLOGICO_ALTERADO == '0') {
+          pacienteData.EXAME_CITOPATOLOGICO_DESC = "";
+        }
+        if (pacienteData.EXAME_MASTOLOGIA_ALTERADO == '0') {
+          pacienteData.EXAME_MASTOLOGIA_DESC = "";
+        }
+
+        if (pacienteData.EXAME_MASTOLOGIA_ALTERADO == undefined) {
+          pacienteData.EXAME_MASTOLOGIA_ALTERADO = 0;
+        }
+        if (pacienteData.EXAME_CITOPATOLOGICO_ALTERADO == undefined) {
+          pacienteData.EXAME_CITOPATOLOGICO_ALTERADO = 0;
+        }
+
+        if (pacienteData.EXAME_MASTOLOGIA_ALTERADO == '1' || pacienteData.EXAME_CITOPATOLOGICO_ALTERADO == '1' || idadePrioritária >= 45) {
+          pacienteData.EM_PRIORIDADE = 1;
+        } else {
+          pacienteData.EM_PRIORIDADE = 0;
+        }
+        pacienteData.CODIGO_MICROAREA = $scope.microAreaBuscada.id;
+
+        if ($scope.editPaciente) { // update
+
+          //console.log('update -> ', pacienteData)
+          var _atualizarPaciente = pacienteServices.putPaciente(pacienteData);
+
+          _atualizarPaciente.then(function (res) {
+            $scope.formPaciente = false;
+            $scope.listPacientesFoiEncontrado = false;
+            $scope.listPacientesNenhumEncontrado = false;
+          }, function (err) {
+            console.log('Erro update submit - ', err);
+          });
+        } else { // insert
+
+          //console.log('insert -> ', pacienteData)
+          var _inserePaciente = pacienteServices.postPaciente(pacienteData);
+
+          _inserePaciente.then(function (res) {
+            $scope.formPaciente = false;
+            $scope.listPacientesFoiEncontrado = false;
+            $scope.listPacientesNenhumEncontrado = false;
+
+            var _incrementPaciente = microAreaServices.incrementAtendidos($scope.microAreaBuscada.id);
+            _incrementPaciente.then(function (res) {
+              console.log('decrementou')
+            }, function (err) {
+              console.log('falhou decrementou')
+            })
+
+          }, function (err) {
+            console.log('Erro insert submit - ', err);
+          });
+        }
+
       } else {
-        console.log('form-paciente inválido', valid)
+        console.log('Operação inválida - SUBMIT FORM', valid);
       }
     }
 

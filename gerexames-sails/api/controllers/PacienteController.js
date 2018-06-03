@@ -39,7 +39,7 @@ module.exports = {
     // });
   },
   /** OTHER FUNCTIONS BELOW */
-  pacientesFromMicroarea: function(req,res){
+  pacientesFromMicroarea: function (req, res) {
     var pacientesEncontrados = function () {
       var pacientesFromMicroarea = 'SELECT * FROM paciente WHERE paciente.CODIGO_MICROAREA = $1';
 
@@ -52,7 +52,9 @@ module.exports = {
         res.status(200).json(response)
       }, function (err) {
         console.log('erro :', err);
-        res.status(200).json({status:'Nada foi encontrado'});
+        res.status(200).json({
+          status: 'Nada foi encontrado'
+        });
       })
     }
     pacientesEncontrados();

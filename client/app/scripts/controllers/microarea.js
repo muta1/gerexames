@@ -27,7 +27,7 @@ angular.module('clientApp')
       _microareas.then(function (response) {
         $scope.listMicroAreas = response.data;
       }, function (error) {
-        console.log('ERROR' + error);
+        console.log('ERROR', error);
       });
     }
     $scope.getAllMicroareas();
