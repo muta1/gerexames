@@ -40,7 +40,7 @@ angular.module('clientApp')
     $scope.updateMicroArea = function (mAreaSave) {
       var _microareaSave = microAreaServices.putMicroarea(mAreaSave);
       _microareaSave.then(function (response) {
-        console.log('atualizou', response);
+        // console.log('atualizou', response);
         $scope.reset();
       }, function (error) {
         console.log('não salvou (update microarea)', error);
@@ -50,7 +50,7 @@ angular.module('clientApp')
       $scope.reset();
       var _microareaAdd = microAreaServices.postMicroarea(mAreaAdd);
       _microareaAdd.then(function (response) {
-        console.log('salvou', response);
+        // console.log('salvou', response);
         $scope.reset();
       }, function (error) {
         console.log('não salvou (save microarea)', error);
@@ -80,11 +80,11 @@ angular.module('clientApp')
 
         var _teste = pacienteServices.delTodosPacientesMicroarea(dado.id);
         _teste.then(function (response) {
-          console.log('del teve resposta  ', response);
+          // console.log('del teve resposta  ', response);
           var _deleteMicroareaPai = microAreaServices.delMicroarea(dado.id);
           _deleteMicroareaPai.then(function (response) {
             $scope.getAllMicroareas();
-            console.log('sucesso apagou pai tbm ', response);
+            // console.log('sucesso apagou ', response);
           }, function (error) {
             console.log('não deletou', error);
           })

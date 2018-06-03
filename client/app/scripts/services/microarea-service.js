@@ -36,7 +36,7 @@ angular.module('clientApp')
         let data = {
           meusDados: mAreaID
         }
-        return $http.post(API + '/microarea/increment/',data);
+        return $http.post(API + '/microarea/increment/', data);
       },
       decrementAtendidos: function (mAreaID) {
         let data = {

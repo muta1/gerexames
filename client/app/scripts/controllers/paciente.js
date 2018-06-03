@@ -24,7 +24,7 @@ angular.module('clientApp')
           $scope.listMicroAreas = response.data;
         }
       }, function (error) {
-        console.log('ERROR' , error);
+        console.log('ERROR', error);
       });
     }
     $scope.getAllMicroareas();
@@ -43,7 +43,7 @@ angular.module('clientApp')
         $scope.microAreaBuscada = mAreaObj;
         //console.log('oi meu chapa ',response.data.rows )
         $scope.listPacientesMicroarea = response.data.rows;
-        console.log('Todos pacientes da microarea - ', $scope.listPacientesMicroarea);
+        // console.log('Todos pacientes da microarea - ', $scope.listPacientesMicroarea);
         if ($scope.listPacientesMicroarea.length > 0) {
           $scope.listPacientesFoiEncontrado = true;
           $scope.listPacientesNenhumEncontrado = false;
@@ -117,7 +117,7 @@ angular.module('clientApp')
 
           var _decrementePaciente = microAreaServices.decrementAtendidos($scope.microAreaBuscada.id);
           _decrementePaciente.then(function (res) {
-            console.log('decrementou')
+            // console.log('decrementou')
           }, function (err) {
             console.log('falhou decrementou')
           })
@@ -181,7 +181,7 @@ angular.module('clientApp')
 
             var _incrementPaciente = microAreaServices.incrementAtendidos($scope.microAreaBuscada.id);
             _incrementPaciente.then(function (res) {
-              console.log('decrementou')
+              // console.log('decrementou')
             }, function (err) {
               console.log('falhou decrementou')
             })

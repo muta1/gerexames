@@ -1,12 +1,31 @@
 <div ng-controller="MainCtrl">
+
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
     <md-toolbar>
-      <h1 class="md-toolbar-tools">Gerenciador de Exames</h1>
+
+      <h1 class="md-toolbar-tools text-center">Gerenciador de Exames</h1>
     </md-toolbar>
     <md-content layout-padding>
-      <form>
-        <button ng-click="goToHome()" class="btn btn-primary">Principal</button>
-        <button ng-click="closeSidebar()" class="btn btn-danger">Fechar</button>
+      <form class="form-group-sm table-responsive text-center">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <button ng-click="goToHome()" class="btn btn-primary">Principal</button>
+          </li>
+          <li class="list-group-item">
+            <button ng-click="goToMicroarea()" class="btn btn-primary">Microáreas</button>
+          </li>
+          <li class="list-group-item">
+            <button ng-click="goToPaciente()" class="btn btn-primary">Pacientes</button>
+          </li>
+          <li class="list-group-item">
+            <button ng-click="goToAbout()" class="btn btn-primary">Sobre</button>
+          </li>
+          <li class="list-group-item">
+            <button ng-click="closeSidebar()" class="btn btn-danger">Fechar</button>
+          </li>
+        </ul>
+
+
 
       </form>
     </md-content>

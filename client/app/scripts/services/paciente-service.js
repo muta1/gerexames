@@ -59,7 +59,7 @@ angular.module('clientApp')
           CODIGO_MICROAREA: paciente.CODIGO_MICROAREA
         }
         //console.log('data put -> ', data);
-        console.log('paciente:', data);
+        // console.log('paciente:', data);
         return $http.patch(API + '/paciente/' + paciente.id, data);
       },
       postPaciente: function (paciente) {
@@ -94,7 +94,7 @@ angular.module('clientApp')
           owner: paciente.CODIGO_MICROAREA
         }
         //console.log('data put -> ', data);
-        console.log('paciente to insert:', data);
+        // console.log('paciente to insert:', data);
         return $http.post(API + '/paciente/', data);
       }
     };
