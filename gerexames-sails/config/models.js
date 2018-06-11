@@ -52,7 +52,7 @@ module.exports.models = {
    * > https://sailsjs.com/docs/concepts/orm/model-settings#?migrate          *
    *                                                                          *
    ***************************************************************************/
-  // Use alter para DB recém criado
+  // Use alter para DB recém criado depois usar somente safe
   migrate: 'safe',
 
   /***************************************************************************

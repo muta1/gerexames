@@ -53,7 +53,7 @@ module.exports.datastores = {
     // port: 3306,
     // user: 'gerexames-sails',
     // password: 'gerexames-sails'
-
+                   //user        : senha @ localhost:porta/nomedobd 
     url: 'mysql://gerexames-sails:gerexames-sails@127.0.0.1:3306/gerexames-sails'
 
   },
